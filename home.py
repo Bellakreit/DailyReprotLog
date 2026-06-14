@@ -42,6 +42,7 @@ st.title("Daily Report Log", text_alignment="center")  # setting title, header a
 st.header("Welcome to the Daily Report Log", text_alignment="center")
 st.subheader("Make your daily report log easy and efficient", text_alignment="center")
 
+
 def btnNewCustomer_Click():  # when the new customer button is clicked function
     st.session_state.show_form = True
     st.session_state.customer_type = "new"  # remember which button was clicked

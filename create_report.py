@@ -1,5 +1,6 @@
 import streamlit as st
 from audiorecorder import audiorecorder
+from report_form import show_report_form
 
 st.title("Create Report", text_alignment="center")
 st.header("Create a new report")
@@ -21,3 +22,8 @@ if len(audio) > 0:
 
     # To save audio to a file, use pydub export method:
     audio.export("audio.wav", format="wav")
+
+btnshow = st.button("Show Report form")
+if btnshow:
+    show_report_form()
+
