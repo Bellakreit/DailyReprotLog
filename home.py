@@ -37,10 +37,12 @@ def LoginCustomer(conn, UserName, Password):
 
 
 # streamlit page:
-
-st.title("Daily Report Log", text_alignment="center")  # setting title, header and subheader for home page
-st.header("Welcome to the Daily Report Log", text_alignment="center")
+with st.container(horizontal_alignment="center"):
+    st.image("Designer.png", width=350)
+st.title("Voice Report PRO", text_alignment="center")  # setting title, header and subheader for home page
+st.header("Welcome to the Voice Report Pro", text_alignment="center")
 st.subheader("Make your daily report log easy and efficient", text_alignment="center")
+st.logo('Designer.png', size='large')
 
 
 def btnNewCustomer_Click():  # when the new customer button is clicked function

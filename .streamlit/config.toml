@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#FF7A1A"               # Orange (buttons, highlights)
+backgroundColor = "#10111E"           # Dark navy background
+secondaryBackgroundColor = "#1F2937"  # Panels / sidebar
+textColor = "#F3F4F6"                 # Light text

@@ -1,10 +1,16 @@
 import streamlit as st
+st.logo("Designer.png", size='large')
 
 def btnSeeAllReports_Click():
     st.session_state.show_all_reports = True
 
 see_all = st.button("See All Reports", type="primary", on_click=btnSeeAllReports_Click)
 search_query = st.text_input("Search by title or date (YYYY-MM-DD)", help="Enter a title or date to search for specific reports.")
+
+btn_search = st.button("Search", type="primary")
+if btn_search:
+    st.success(f"Searching for reports matching: {search_query}")
+
 
 if "show_all_reports" not in st.session_state:
     st.session_state.show_all_reports = False  
