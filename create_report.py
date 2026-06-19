@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+import sqlite3
 from audiorecorder import audiorecorder
 from report_form import show_report_form
 
@@ -6,6 +8,12 @@ st.title("Create Report", text_alignment="center")
 st.header("Create a new report")
 st.subheader("upload or record an audio to create your report")
 st.logo("Designer.png", size='large')
+
+# select project from dropdown from querying the database, no default value
+conn = sqlite3.connect("report_log.db")
+projects_df = pd.read_sql_query("SELECT * FROM Projects", conn)
+project_names = projects_df["Name"].tolist()
+selected_project = st.selectbox("Select Project", project_names, key="selected_project", placeholder=None)
 
 uploaded_file = st.file_uploader(
     "Upload an audio file",
@@ -31,4 +39,3 @@ if btn_submit_audio:
 btnshow = st.button("Enter Report Manually")
 if btnshow:
     show_report_form()
-

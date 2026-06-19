@@ -10,7 +10,7 @@ def AddCustomer(conn, UserName, Password, FirstName, LastName, Email, Phone):
         raise ValueError("All fields must be filled in.")  # raise error so the button code can catch it
     cur = conn.cursor()
     cur.execute("""
-    INSERT INTO Customers (UserName, Password, FirstName, LastName, Email, Phone)
+    INSERT INTO Users (UserName, Password, FirstName, LastName, Email, Phone)
         VALUES (?, ?, ?, ?, ?, ?)
     """, (UserName, Password, FirstName, LastName, Email, Phone))
     conn.commit()
