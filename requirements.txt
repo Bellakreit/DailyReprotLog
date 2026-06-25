@@ -1,0 +1,6 @@
+streamlit
+sqlite3
+audiorecorder
+transformers
+"transformers<5.0.0"
+torch

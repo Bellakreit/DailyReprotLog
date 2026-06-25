@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import sqlite3
 from audiorecorder import audiorecorder
 from report_form import show_report_form
+from audio_transcriber import transcribe_audio
+from pathlib import Path
+import torch
 
 st.title("Create Report", text_alignment="center")
 st.header("Create a new report")
@@ -20,21 +24,27 @@ uploaded_file = st.file_uploader(
     type=["audio/mpeg", "audio/mp4", "audio/wav", "audio/x-wav"],
     help="Audio files are supported in mpeg, mp4, wav, and x-wav formats.",
 )
-
+if uploaded_file is not None:
+    saved_audio = uploaded_file.getvalue()
 
 st.title("Audio Recorder")
 audio = audiorecorder("Click to record", "Click to stop recording")
 
 if len(audio) > 0:
-    # To play audio in frontend:
-    st.audio(audio.export().read())  
-
-    # To save audio to a file, use pydub export method:
-    audio.export("audio.wav", format="wav")
+    # save audio as torch tensor DOES NOT WORK
+    saved_audio = torch.from_numpy(np.array(audio))
+    st.audio(saved_audio)
+    
 
 btn_submit_audio = st.button("Submit Audio")
 if btn_submit_audio:
-    st.success("Audio submitted successfully!", show_report_form())
+    # Transcribe the audio
+    st.spinner("Transcribing audio...")
+    transcription = transcribe_audio(saved_audio)
+    st.write("Transcription:")
+    st.write(transcription)
+    st.success("Audio submitted successfully!")
+    show_report_form()
 
 btnshow = st.button("Enter Report Manually")
 if btnshow:

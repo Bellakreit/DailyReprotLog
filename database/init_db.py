@@ -61,5 +61,16 @@ cursor.execute('''
     )
 ''')
 
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Feedback (
+        FeedbackID INTEGER PRIMARY KEY AUTOINCREMENT,
+        UserID INTEGER,
+        Stars INTEGER NOT NULL,
+        Comment TEXT,
+        Change TEXT,
+        Fix TEXT
+    )
+''')
+
 conn.commit()
 conn.close()
